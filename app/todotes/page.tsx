@@ -7,7 +7,7 @@ import { getMissingKeys } from '@/app/actions'
 import { redirect } from 'next/navigation'
 
 export const metadata = {
-  title: 'Next.js AI Chatbot'
+  title: 'Todotes'
 }
 
 export default async function IndexPage() {
@@ -20,9 +20,5 @@ export default async function IndexPage() {
 
   const missingKeys = await getMissingKeys()
 
-  return (
-    <AI initialAIState={{ chatId: id, messages: [] }}>
-      <Chat id={id} session={session} missingKeys={missingKeys} />
-    </AI>
-  )
+  return <div>Hello</div>
 }
