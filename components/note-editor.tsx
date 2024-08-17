@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 
 interface NoteProps {
   note?: {
+    id: number
     title: string
     body: string
   }
