@@ -54,6 +54,7 @@ const TodoList: React.FC<TodoListProps> = ({
               type="checkbox"
               checked={todo.completed}
               onChange={() => onToggleTodo(todo.id)}
+              aria-label={`Mark "${todo.text}" as ${todo.completed ? 'incomplete' : 'complete'}`}
               className="mr-2"
             />
             <span className={todo.completed ? 'line-through' : ''}>

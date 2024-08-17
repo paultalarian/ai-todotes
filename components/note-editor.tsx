@@ -43,7 +43,7 @@ const NoteEditor = ({ note, onUpdateNote }: NoteProps) => {
       <textarea
         value={body}
         onChange={e => setBody(e.target.value)}
-        className="w-full h-full"
+        className="size-full"
         placeholder="Note body"
       />
     </div>

@@ -30,9 +30,11 @@ const NoteList: React.FC<NoteListProps> = ({
             note.id === selectedNoteId ? 'bg-gray-200' : ''
           }`}
         >
-          <div onClick={() => onSelectNote(note.id)}>{note.title}</div>
+          <div onClick={() => onSelectNote(note.id.toString())}>
+            {note.title}
+          </div>
           <button
-            onClick={() => onDeleteNote(note.id)}
+            onClick={() => onDeleteNote(note.id.toString())}
             className="text-red-500"
           >
             Delete
