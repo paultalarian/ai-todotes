@@ -5,7 +5,7 @@ interface NoteProps {
     title: string
     body: string
   }
-  onUpdateNote: (note: { title: string; body: string }) => void
+  onUpdateNote: (note: { id: number; title: string; body: string }) => void
 }
 
 const NoteEditor = ({ note, onUpdateNote }: NoteProps) => {
