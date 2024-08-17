@@ -1,5 +1,5 @@
 import { nanoid } from '@/lib/utils'
-import { Chat } from '@/components/chat'
+import { Todotes } from '@/components/todotes'
 import { AI } from '@/lib/chat/actions'
 import { auth } from '@/auth'
 import { Session } from '@/lib/types'
@@ -20,5 +20,9 @@ export default async function IndexPage() {
 
   const missingKeys = await getMissingKeys()
 
-  return <div>Hello</div>
+  return (
+    <div>
+      <Todotes />
+    </div>
+  )
 }
