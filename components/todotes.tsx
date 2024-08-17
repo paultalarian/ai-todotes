@@ -74,7 +74,7 @@ export function Todotes() {
     )
   }
 
-  const deleteTodo = id => {
+  const deleteTodo = (id: number) => {
     setTodos(todos.filter(todo => todo.id !== id))
   }
 
