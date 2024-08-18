@@ -15,7 +15,19 @@ export function Todotes() {
   useEffect(() => {
     const savedNotes = JSON.parse(localStorage.getItem('notes') || '[]')
     setNotes(savedNotes)
-    if (savedNotes.length > 0) setSelectedNoteId(savedNotes[0].id)
+    // If there are saved notes, select the first one
+    if (savedNotes.length > 0) {
+      setSelectedNoteId(savedNotes[0].id)
+    } else {
+      // If there are no saved notes, create a new note and select it
+      const newNote = {
+        id: Date.now(),
+        title: 'New Note',
+        body: ''
+      }
+      setNotes([newNote])
+      setSelectedNoteId(newNote.id)
+    }
   }, [])
 
   useEffect(() => {
@@ -75,7 +87,13 @@ export function Todotes() {
   }
 
   const deleteTodo = (id: number) => {
-    setTodos(todos.filter(todo => todo.id !== id))
+    const updatedTodos = todos.filter(todo => todo.id !== id)
+    setTodos(updatedTodos)
+
+    // If the last todo item is deleted, clear the todos from localStorage
+    if (updatedTodos.length === 0) {
+      localStorage.removeItem('todos')
+    }
   }
 
   const handleSelectNote = (id: string) => {
@@ -83,30 +101,36 @@ export function Todotes() {
   }
 
   return (
-    <div className="flex h-screen">
-      <NoteList
-        notes={notes}
-        selectedNoteId={selectedNoteId}
-        onSelectNote={handleSelectNote}
-        onCreateNote={createNewNote}
-        onDeleteNote={deleteNote}
-      />
-      <NoteEditor
-        note={notes.find(note => note.id === selectedNoteId)}
-        onUpdateNote={updatedNote => {
-          setNotes(
-            notes.map(note =>
-              note.id === updatedNote.id ? { ...note, ...updatedNote } : note
+    <div className="flex h-screen bg-white">
+      <div className="w-1/5 border-r">
+        <NoteList
+          notes={notes}
+          selectedNoteId={selectedNoteId}
+          onSelectNote={handleSelectNote}
+          onCreateNote={createNewNote}
+          onDeleteNote={deleteNote}
+        />
+      </div>
+      <div className="w-2/5 border-r-4">
+        <NoteEditor
+          note={notes.find(note => note.id === selectedNoteId)}
+          onUpdateNote={updatedNote => {
+            setNotes(
+              notes.map(note =>
+                note.id === updatedNote.id ? { ...note, ...updatedNote } : note
+              )
             )
-          )
-        }}
-      />
-      <TodoList
-        todos={todos}
-        onAddTodo={addTodo}
-        onToggleTodo={toggleTodo}
-        onDeleteTodo={deleteTodo}
-      />
+          }}
+        />
+      </div>
+      <div className="w-2/5">
+        <TodoList
+          todos={todos}
+          onAddTodo={addTodo}
+          onToggleTodo={toggleTodo}
+          onDeleteTodo={deleteTodo}
+        />
+      </div>
     </div>
   )
 }

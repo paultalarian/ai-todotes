@@ -1,5 +1,9 @@
 import React, { useState } from 'react'
 
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Trash } from 'lucide-react'
+
 interface TodoItem {
   id: number
   text: string
@@ -30,26 +34,29 @@ const TodoList: React.FC<TodoListProps> = ({
   }
 
   return (
-    <div className="w-2/5 p-4 bg-gray-100">
-      <h2 className="text-2xl font-bold mb-4">Todo List</h2>
-      <form onSubmit={handleSubmit} className="mb-4">
-        <input
+    <div className="p-4">
+      <h2 className="text-xl font-bold mb-4">Todo List</h2>
+      <form
+        onSubmit={handleSubmit}
+        className="flex w-full items-center space-x-2 mb-4"
+      >
+        <Input
           type="text"
           value={newTodoText}
           onChange={e => setNewTodoText(e.target.value)}
           placeholder="Add a new todo"
-          className="w-full p-2 border rounded"
+          className="focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-violet-300"
         />
-        <button
-          type="submit"
-          className="mt-2 px-4 py-2 bg-blue-500 text-white rounded"
-        >
-          Add Todo
-        </button>
+        <Button type="submit" className="bg-violet-900 hover:bg-violet-950">
+          Add
+        </Button>
       </form>
       <ul>
         {todos.map(todo => (
-          <li key={todo.id} className="flex items-center mb-2">
+          <li
+            key={todo.id}
+            className="pr-1 flex justify-between items-center cursor-pointer transition-colors"
+          >
             <input
               type="checkbox"
               checked={todo.completed}
@@ -57,15 +64,19 @@ const TodoList: React.FC<TodoListProps> = ({
               aria-label={`Mark "${todo.text}" as ${todo.completed ? 'incomplete' : 'complete'}`}
               className="mr-2"
             />
-            <span className={todo.completed ? 'line-through' : ''}>
+            <span
+              className={`text-sm w-full ${todo.completed ? 'line-through' : ''}`}
+            >
               {todo.text}
             </span>
-            <button
+            <Button
+              variant="ghost"
+              size="icon"
+              className="hover:bg-white"
               onClick={() => onDeleteTodo(todo.id)}
-              className="ml-auto px-2 py-1 bg-red-500 text-white rounded"
             >
-              Delete
-            </button>
+              <Trash className="size-4" />
+            </Button>
           </li>
         ))}
       </ul>

@@ -33,19 +33,19 @@ const NoteEditor = ({ note, onUpdateNote }: NoteProps) => {
   if (!note) return <div className="w-2/3 p-4">Select a note</div>
 
   return (
-    <div className="w-2/5 p-4 h-full flex flex-col">
+    <div className="p-4 h-full flex flex-col">
       <input
         type="text"
         value={title}
         onChange={e => setTitle(e.target.value)}
-        className="w-full text-2xl font-bold mb-4"
+        className="w-full text-xl font-bold mb-4"
         placeholder="Note title"
       />
       <textarea
         value={body}
         onChange={e => setBody(e.target.value)}
-        className="size-full"
-        placeholder="Note body"
+        className="size-full text-sm"
+        placeholder="Notes"
       />
     </div>
   )
