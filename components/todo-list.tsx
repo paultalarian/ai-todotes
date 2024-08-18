@@ -75,7 +75,7 @@ const TodoList: React.FC<TodoListProps> = ({
               className="hover:bg-white"
               onClick={() => onDeleteTodo(todo.id)}
             >
-              <Trash className="size-4" />
+              <Trash className="size-4 text-violet-300" />
             </Button>
           </li>
         ))}

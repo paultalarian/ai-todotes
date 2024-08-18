@@ -52,7 +52,7 @@ const NoteList: React.FC<NoteListProps> = ({
             <AlertDialog>
               <AlertDialogTrigger asChild>
                 <Button variant="ghost" size="icon" className="hover:bg-white">
-                  <Trash className="size-4" />
+                  <Trash className="size-4 text-violet-300" />
                 </Button>
               </AlertDialogTrigger>
               <AlertDialogContent>
